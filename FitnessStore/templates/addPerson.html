@@ -1,0 +1,31 @@
+{%extends "index.html"%}
+
+{%block Custom_Data%}
+    <div class="contaier">
+        <form method="POST" class="">
+                {% csrf_token %}
+                {{form1}}
+            <table class="table table-light container" style="width: 500px;">
+                <!--<tr align="center">
+                    <td><label>Id</label></td>
+                    <td>
+                        <input type="form-control" name="pid" placeholder="Enter Id Here" required>
+                    </td>
+                </tr>-->
+                <tr align="center">
+                    <td><label>Name</label></td>
+                    <td><input type="text" name="pname" placeholder="Enter Name Here" required></td>
+                </tr>
+                <tr align="center">
+                    <td><label>Location</label></td>
+                    <td><input type="text" name="ploc" placeholder="Enter Location Here" required></td>
+                    </tr>
+                <tr align="center">
+                    <td colspan="2"><input class="btn btn-primary btn-sm" type="submit" value="Add">
+                    <input class="btn btn-secondary btn-sm" type="reset" value="Reset Fields"></td>
+                  </tr>
+            </table>
+        </form>
+        </div>
+    </div>
+{%endblock%}

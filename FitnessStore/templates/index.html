@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">-->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </head>
+      <style>
+          
+        </style>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/FitnessStore/index">RG Fitness</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                    </button>
+                      
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                              <a class="nav-link" href="/FitnessStore/index">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="/FitnessStore/subcatagory" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Equipments
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for s in subcat%}
+                                <a class="dropdown-item" href="/FitnessStore/ShowProducts/{{s.id}}">{{s.subcatname}}</a>
+                                {% endfor %}                                
+                                <!--<a class="dropdown-item" href="/FitnessStore/yoganmeditation">Yoga and Meditation</a>
+                                <a class="dropdown-item" href="#">Combat Sports</a>-->
+                              </div>
+                            </li>
+                            <li class="nav-item">
+                              {% for s1 in subcat1 %}
+                              <a class="nav-link" href="/FitnessStore/ShowProducts/{{s1.id}}">{{s1.subcatname}}</a>
+                              {% endfor %}
+                            </li>
+                            <li class="nav-item">
+                                {% for s2 in subcat2 %}
+                                <a class="nav-link" href="/FitnessStore/ShowProducts/{{s2.id}}">{{s2.subcatname}}</a>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                        {% if "username" not in request.session %}
+                            <a href="/FitnessStore/userlogin">
+                              <button class="btn btn-outline-primary btn-sm mr-1">Login
+                                <span class="fa fa-sign-in"></span>
+                              </button>
+                            </a>
+                            <a href="/FitnessStore/custRegister/">
+                              <button class="btn btn-outline-info btn-sm">Register
+                                <span class="fa fa-users"></span>
+                              </button>   
+                            </a>
+                            {% else %}
+                            <div class="dropdown dropleft">
+                            <a href="/FitnessStore/showcart"><i class="fa fa-shopping-cart mr-2"><sup><span class="badge badge-secondary">{{cont}}</span></sup></i></a>
+                            <a href="#" class="fa fa-user-circle-o text-dark p-2" data-toggle="dropdown" style="text-decoration: none;"></a> <i>Welcome {{request.session.username}}</i>
+                              
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#"><i class="fa fa-heart m-2"></i>Wish List</a>
+                              <a class="dropdown-item" href="#"><i class="fa fa-user m-2"></i>Account</a>
+                              <a class="dropdown-item" href="/FitnessStore/logout"><i class="fa fa-sign-out m-2"></i>Logout</a>
+                            </div>
+                            </div>
+                            {% endif %}
+                            
+                        </div>  
+                        
+                    </div>
+                </nav>
+                {%block Custom_Data%}
+                <div id="demo" class="carousel slide container" data-ride="carousel">
+                  <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                      <li data-target="#demo" data-slide-to="0" class="active"></li>
+                      <li data-target="#demo" data-slide-to="1"></li>
+                      <li data-target="#demo" data-slide-to="2"></li>
+                    </ul>                  
+                  <!-- The slideshow -->
+                    <div class="carousel-inner" style="margin:10px auto; border-radius: 10px;">                      
+                        {% load static %}
+                      <div class="carousel-item active">
+                        <a href="/FitnessStore/ShowProducts">
+                        <img class="img-fluid" src="{% static 'weight-training.jpg' %}" alt="Los Angeles">
+                        </a>
+                      </div>
+                      <div class="carousel-item">
+                        <a href="/FitnessStore/yoganmeditation">
+                          <img class="img-fluid" src="{% static 'yoga_meditation.jpg' %}" alt="Chicago">
+                        </a>
+                      </div>
+                      <div class="carousel-item">
+                        <img class="img-fluid" src="{% static 'combat-sports.png' %}" alt="New York">
+                      </div>
+                    </div>
+                  
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+                  
+                  </div>
+                {%endblock%}
+        </div>
+        
+    </body>
+</html>

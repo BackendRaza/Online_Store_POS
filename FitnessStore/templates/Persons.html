@@ -1,0 +1,40 @@
+{%extends "index.html"%}
+
+{%block Custom_Data%}
+    <div class="container" style="margin-top: 100px">
+        <table class="table table-hover table-sm"><!--style="width: 800px;-->
+            <caption>List of Persons</caption>
+            <thead><tr align="center">
+                <th>Id</th><th>Name</th><th>Location</th><th>Edit</th><th>Delete</th>
+            </tr></thead>
+            {%for p in persons%}
+                <tr align="center">
+                    <td>{{p.id}}</td>
+                    <td>{{p.pname}}</td>
+                    <td>{{p.plocation}}</td>
+                    <td><a href="editp/{{p.id}}"><i class="fa fa-edit"></i></a></td>
+                    <td><a href=""><span class="fa fa-trash" data-toggle="modal" data-target="#delete"></span></a></td>
+                </tr>
+            {%endfor%}
+            <tr>
+                    <td colspan="5">
+                            <a href="/FitnessStore/addPerson"><button class="btn btn-primary btn-sm float-right"><i class="fa fa-user"></i> Add Person</button></a>
+                    </td>
+                </tr>
+        </table>
+        <div class="modal" id="delete">
+            <div class="dialog modal-sm container">
+              <div class="modal-content">
+                <div class="modal-header">
+                      <h4 class="modal-title">Confirm Deletion</h4>
+                </div>
+                <div>
+                  {% csrf_token %}
+                   <button type="submit" class="btn btn-success btn-sm float-right" id="btnLogin" style="margin-left: 3px;">Confirm</button>
+                   <button type="button" class="btn btn-danger btn-sm float-right" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+{%endblock%}

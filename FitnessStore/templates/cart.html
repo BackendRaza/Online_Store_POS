@@ -1,0 +1,17 @@
+<html>
+   <body>
+
+  <!--<a href="AddItems">Add Items</a>-->
+  <h1>Total Amount {{total}}</h1>
+   
+<table border="1">
+   <tr><td>EName</td><td>Salary</td><td>Delete</td></tr>
+    {%for prod  in prods %}
+    <tr><td>{{prod .ename}}</td><td>{{prod.salary}}</td><td><a href="deleteitem/{{prod.id}}">Remove from Cart</a></td></tr>
+    {% endfor %}
+</table>
+
+<a href="MakePayment">Make Payment</a>
+
+   </body>
+</html>

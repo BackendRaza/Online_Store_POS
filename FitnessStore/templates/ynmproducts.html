@@ -1,0 +1,61 @@
+{%extends "index.html"%}
+
+{%block Custom_Data%}
+<div class="container" style="padding: 20px; border: 3px solid #F8F9FA; border-radius: 10px; margin-top: 10px;">
+    <form class="form-group">
+        <label class="h3 font-weight-bold text-info">Yoga and Meditation Products</label>
+        <input class="form-control form-inline w-25 float-right" type="text" id="myFilter" onkeyup="myFunction()" placeholder="Search Product..">
+    </form>
+    <div class="row d-flex justify-content-around" id="myItems">
+        {%for y in ynm%}
+        <div class="card text-center" style="width: 300px; margin: 20px;">
+            <img class="card-img-top img-responsive img-thumbnail" src="{{y.ynmprodpic.url}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{y.ynmprodtype}}</h5>
+                <p class="card-text"><strong>Description<br></strong>{{y.ynmproddesc}}<br><strong>Price:</strong>{{y.ynmprodprice}}</p>
+                {% if "username" not in request.session%}
+                <a href="/FitnessStore/userlogin" class="btn btn-primary" data-toggle="tooltip" title="Please login to Add"><i class="fa fa-cart-plus"> Add To Cart</i></a>
+                {% else %}
+                <a href="#" class="btn btn-primary"><i class="fa fa-cart-plus"> Add To Cart</i></a>
+                {% endif %}
+            </div>
+        </div>  
+        {%endfor%}
+    </div>
+</div>
+<script>
+function myFunction() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myItems");
+    cards = cardContainer.getElementsByClassName("card");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-body h5.card-title");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+
+
+
+<!--<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#strenprod *").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>-->
+
+{%endblock%}
